@@ -35,6 +35,11 @@
     &__logo{
         margin-left: 1rem;
         text-align: center;
+
+        a{
+            list-style: none;
+            text-decoration: none;
+        }
         
         @include helpers.media(helpers.$tablet) {
             text-align: left;

@@ -1,0 +1,82 @@
+@use '../helpers';
+
+.form{
+    margin-top: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // gap: 0.50rem;
+    text-align: center;
+    &>*{
+        width: 80%;
+        padding: 0.50rem;
+        border-radius: 10px;
+        font-size: large;
+        
+        @include helpers.media(helpers.$tablet) {
+            width: 60%;
+        }
+        @include helpers.media(helpers.$desktop) {
+              width: 40%;
+          }
+        @include helpers.media(helpers.$lg-desktop) {
+              width: 30%;
+          }
+
+    }
+
+    &__field{
+        border: none;
+        background-color: helpers.setColor(bg-secondary);
+        color: helpers.setColor(bg-tertiary);
+        margin-bottom: 0.50rem;
+        padding-left: 1rem;
+        transition: outline 400ms ease-in-out;
+    }
+    &__field:focus{
+        outline: helpers.setColor(text-primary) solid 1px;
+    }
+
+    &__field--error{
+        border: rgba(141, 10, 10, 0.801) solid 2px;
+    }
+
+    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: helpers.setColor(bg-tertiary);
+        opacity: 0.60; /* Firefox */
+      }
+
+    select,
+    input[type="number"]{
+        width: 20%;
+        @include helpers.media(helpers.$desktop) {
+              width: 15%;
+          }
+        @include helpers.media(helpers.$lg-desktop) {
+              width: 13%;
+          }
+    }
+
+    button{
+        @include helpers.buttons;
+        font-size: larger;
+        color: helpers.setColor(bg-tertiary);
+        margin-top: 2rem;
+
+        @include helpers.media(helpers.$tablet) {
+            width: 25%;
+        }
+        @include helpers.media(helpers.$desktop) {
+              width: 20%;
+          }
+        @include helpers.media(helpers.$lg-desktop) {
+              width: 15%;
+          }
+    }
+    &__label{
+        font-size: larger;
+        color: helpers.setColor(text-primary);
+    }
+}
