@@ -1,0 +1,15 @@
+@use '../helpers';
+
+.card{
+    border: 1px solid helpers.setColor(bg-primary);
+    min-height: 25vh;
+    text-align: center;
+    border-radius: 10px;
+    &__image{
+        width: 100%;
+    }
+
+    &__description{
+        padding: 0.50rem;
+    }
+}

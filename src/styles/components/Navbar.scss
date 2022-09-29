@@ -1,0 +1,95 @@
+@use '../helpers';
+
+.navbar{
+    background-color: helpers.setColor(bg-primary);
+    border: none;
+    box-shadow:
+        0.7px 0.1px 1.4px rgba(0, 0, 0, 0.02),
+        1.7px 0.3px 3.4px rgba(0, 0, 0, 0.028),
+        3.1px 0.6px 6.4px rgba(0, 0, 0, 0.035),
+        5.6px 1.1px 11.4px rgba(0, 0, 0, 0.042),
+        10.4px 2.1px 21.3px rgba(0, 0, 0, 0.05),
+        25px 5px 51px rgba(0, 0, 0, 0.07);
+
+    &>:first-child,
+    &>:last-child{
+        padding: 0.75rem 0;
+    }
+
+    &__user_menu{
+        background-color: helpers.setColor(primary);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        position: absolute;
+        top: 3px;
+        right: 1rem;
+        text-align: center;
+        line-height: 50px;
+        color: helpers.setColor(bg-primary);
+        cursor: pointer;
+        @include helpers.media(helpers.$tablet) {
+            right: 3rem;
+        }
+    }
+    &__logo{
+        margin-left: 1rem;
+        text-align: center;
+        
+        @include helpers.media(helpers.$tablet) {
+            text-align: left;
+            margin-left: 3rem;
+        }
+    }
+}
+.menu{
+    display: flex;
+    flex-direction: column;
+    @include helpers.media(helpers.$tablet) {
+        flex-direction: row;
+    }
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    margin: 0 1rem;
+    @include helpers.media(helpers.$tablet) {
+        margin: 0 3rem;
+            
+    }
+
+    &__items{
+        list-style: none;
+        &>a{
+            text-decoration: none;
+            transition: color 400ms ease-in-out;
+            &:hover{
+                color: helpers.setColor(primary);
+            }
+        }
+    }
+    &>:last-child{
+        @include helpers.media(helpers.$tablet) {
+            margin-left: auto;
+        }
+    }
+    &__search{
+        padding: 0.30rem 0;
+        width: 250px;
+        outline: none;
+        border: none;
+        padding-left: 0.50rem;
+        border-bottom-left-radius: 10px;
+        border-top-left-radius: 10px;
+    }
+    &__search__btn{
+        @include helpers.buttons;
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+        background-color: #FFFFFF;
+        padding: 0.30rem 0.50rem;
+
+        &>i{
+            pointer-events: none;
+        }
+    }
+}

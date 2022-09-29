@@ -1,0 +1,52 @@
+//==================== Global variables ====================
+
+//==================== Color variables ====================
+$gradient: linear-gradient(30deg, #00C6BA, #97ACCF, #A6ABB6, #FFFFFE, #464646, #2F4858 );
+
+$lightPalette : (
+    'primary' : #00C6BA,
+    'secondary' : #97ACCF,
+    'bg-primary': #EEF1F7,
+    'bg-secondary': #A6ABB6,
+    'bg-tertiary': #FFFFFE, // navigation bar
+    'text-primary': #464646
+);
+
+//==================== Size variables ====================
+$lg-phone: 425px;
+$tablet: 600px;
+$desktop: 1024px;
+$lg-desktop: 1370px;
+
+//==================== Functions ====================
+
+// This function get the color of the map $lightPalette
+@function setColor( $color ){
+    @return map-get($lightPalette , $color ) 
+};
+
+//==================== Mixins ====================
+
+// Mixin for styling buttons
+@mixin buttons {
+    background-color: setColor(primary);
+    font-weight: 800;
+    color: setColor(bg-secondary);
+    padding: 0.75rem 1.225rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: background 400ms ease-in-out;
+    &:focus,
+    &:hover{
+        background-color: lighten(setColor( primary),15);
+    }
+    
+}
+
+// Mixin for Media Queries
+@mixin media( $size ) {
+    @media only screen and (min-width: $size ){
+        @content;
+    }
+}
