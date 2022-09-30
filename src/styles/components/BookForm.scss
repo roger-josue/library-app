@@ -40,7 +40,8 @@
     }
 
     &__field--error{
-        border: rgba(141, 10, 10, 0.801) solid 2px;
+        padding-top: 0;
+        color: rgba(141, 10, 10, 0.801);
     }
 
     ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */

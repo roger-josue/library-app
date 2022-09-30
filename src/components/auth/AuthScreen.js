@@ -1,12 +1,14 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
-export const AuthScreen = ({ setIsLoggedIn }) => {
+export const AuthScreen = ({ isLoggedIn, setIsLoggedIn }) => {
 
   const navigate = useNavigate();
+
   const handleLogin = ()=>{
     setIsLoggedIn(true);
-    navigate("/");
+    // localStorage.setItem("isLoggedIn",true);
+    navigate("/books");
   }
   return (
     <div>
