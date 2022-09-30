@@ -38,6 +38,9 @@ body {
     justify-items: center;
     gap: 1rem;
     @include helpers.media(helpers.$tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include helpers.media(helpers.$lg-tablet) {
       grid-template-columns: repeat(3, 1fr);
     }
     @include helpers.media(helpers.$desktop) {
@@ -50,7 +53,7 @@ body {
 
   .spinner{
     font-size: 100px;
-    margin-top: 2rem;
+    margin-top: 6rem;
     color: helpers.setColor(primary);
   }
   

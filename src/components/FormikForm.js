@@ -22,7 +22,7 @@ export const FormikForm = ({initialValues, handleSubmit, formType}) => {
         onSubmit={(values, { setSubmitting })=>handleSubmit(values,setSubmitting)}
       >
         {({ isSubmitting }) => (
-          <Form className='form'>
+          <Form className='form fadeIn'>
             <label className='form__label' htmlFor="title">Title</label>
             <Field className="form__field" type="text" name="title" placeholder="Book title"/>
             <ErrorMessage className='form__field--error' name="title" component="div" />

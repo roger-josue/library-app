@@ -14,7 +14,8 @@ $lightPalette : (
 
 //==================== Size variables ====================
 $lg-phone: 425px;
-$tablet: 600px;
+$tablet: 700px;
+$lg-tablet: 800px;
 $desktop: 1024px;
 $lg-desktop: 1370px;
 
@@ -49,4 +50,9 @@ $lg-desktop: 1370px;
     @media only screen and (min-width: $size ){
         @content;
     }
+}
+
+// ANIMATIONS
+.fadeIn{
+    animation: fade-in 300ms ease-in-out forwards;
 }

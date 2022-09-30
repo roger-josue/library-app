@@ -15,14 +15,7 @@ export const BookForm = ({ formType="Create"}) => {
   };
   const { id } = useParams();
   const books = useSelector((state) => state.books.books);
-  const [book, setBook] = useState({ 
-    title: "",
-    description: "",
-    url: "",
-    image_url: "",
-    year_published: "",
-    available : ""
-  });
+  const [book, setBook] = useState(initialValues);
 
   const removeKeys = () => {
     setBook(current => {
@@ -37,9 +30,11 @@ export const BookForm = ({ formType="Create"}) => {
     if(formType === "Edit"){
       setBook( books.find(book => book.id == id) );
       removeKeys();
+    } else {
+      setBook(initialValues);
     }
     
-  }, []);
+  }, [formType]);
   
 
   const handleSubmit = (values,setSubmitting)=>{
@@ -50,7 +45,7 @@ export const BookForm = ({ formType="Create"}) => {
   }
 
   return (
-    <div className='container'>
+    <div className='container fadeIn'>
       <h1>{formType} Book</h1>
       {
         (formType === "Edit") ? <FormikForm initialValues={{...book}} handleSubmit={handleSubmit} formType={formType}/>

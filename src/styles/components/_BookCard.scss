@@ -10,6 +10,11 @@
         width: 250px;
         height: 300px;
         object-fit: scale-down;
+        cursor: pointer;
+        transition: transform 400ms ease-in-out;
+        &:hover{
+            transform: scale(1.04);
+        }
     }
     
     &__description{

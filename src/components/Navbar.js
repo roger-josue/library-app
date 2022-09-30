@@ -5,7 +5,7 @@ export const Navbar = () => {
   return (
     <nav className='navbar'>
         <h1 className="navbar__logo">
-          <Link to='/'>Library-App</Link>
+          <Link to='/books'>Library-App</Link>
         </h1>
         <div className="navbar__user_menu">RV</div>
         <hr color="#A6ABB6" />

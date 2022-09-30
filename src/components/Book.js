@@ -5,6 +5,7 @@ import placeholder from '../assets/book-placeholder.jpeg';
 
 export const Book = () => {
   const { id } = useParams();
+  const userFakeId = 1;
   const books = useSelector((state) => state.books.books);
   const [isLoading, setIsLoading] = useState(true);
   const [book, setBook] = useState({});
@@ -13,7 +14,7 @@ export const Book = () => {
 
   useEffect(() => {
     setBook( books.find(book => book.id == id) );
-    
+
     if(book){
       setInterval(() => {
         setIsLoading(false);
@@ -23,13 +24,13 @@ export const Book = () => {
 
 
   return (
-    <div className='container'>
+    <div className='container fadeIn'>
       {
         (isLoading) ? (
           <i className="spinner fa-solid fa-spinner fa-spin"></i>
         ) :
         (
-          <div className='book'>
+          <div className='book fadeIn'>
             <h1 className='book__title'>{book.title}</h1>
             <figure className='book__body'>
               <img className='book__body__image' src={(book.image_url) ? book.image_url : placeholder} alt="a book cover" />
@@ -40,7 +41,7 @@ export const Book = () => {
                 <div className='book__body__buttons'>
                   <a target="_blank" href={book.url} >
                     Website <i className="fa-solid fa-up-right-from-square"></i></a>
-                  <Link to={`/edit/${id}`}>Edit <i className="fa-solid fa-pen-to-square"></i></Link>
+                  <Link to={`/edit/${id}`} className={(userFakeId == book.user_id) ? "" : "book__body__buttons__a--disabled"}>Edit <i className="fa-solid fa-pen-to-square"></i></Link>
                 </div>
               </figcaption>
             </figure>

@@ -44,10 +44,7 @@
                 color: helpers.setColor(bg-tertiary);
                 cursor: pointer;
                 text-decoration: none;
-                transition: color 400ms ease-in;
-                &:hover{
-                    color: helpers.setColor(primary);
-                }
+                transition: background 400ms ease-in;
                 i{
                     color: helpers.setColor(bg-tertiary);
                 }
@@ -57,6 +54,11 @@
 
         &__buttons{
             padding-top: 2rem;
+
+            &__a--disabled{
+                pointer-events: none;
+                background-color: #4646466e !important;
+            }
         }
     }
 }
