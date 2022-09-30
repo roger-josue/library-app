@@ -47,4 +47,10 @@ body {
       grid-template-columns: repeat(5, 1fr);
     }
   }
+
+  .spinner{
+    font-size: 100px;
+    margin-top: 2rem;
+    color: helpers.setColor(primary);
+  }
   

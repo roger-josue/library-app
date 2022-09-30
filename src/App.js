@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dashboard } from './components/Dashboard';
 
 import { createBrowserRouter, createRoutesFromElements, Navigate, Route, RouterProvider} from "react-router-dom";
@@ -6,10 +6,19 @@ import { Books } from './components/Books';
 import { Book } from './components/Book';
 import { AuthScreen } from './components/auth/AuthScreen';
 import { BookForm } from './components/BookForm';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBooksAsync } from './features/books/booksSlice';
 
 
 function App() {
   const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+  const booksState = useSelector((state) => state.books.books);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchBooksAsync());
+  }, []);
+  
   
   
   const router = createBrowserRouter(
@@ -25,11 +34,11 @@ function App() {
           },
           {
             path: "/books",
-            element: <Books />,
+            element: <Books books={booksState}/>,
           },
           {
             path: ":user/books",
-            element: <Books />,
+            element: <Books books={booksState}/>,
           },
           {
             path: "add",
