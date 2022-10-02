@@ -38,10 +38,12 @@ export const BookForm = ({ formType="Create"}) => {
   
 
   const handleSubmit = (values,setSubmitting)=>{
+    setSubmitting(true);
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));
       setSubmitting(false);
     }, 400);
+    setSubmitting(false);
   }
 
   return (

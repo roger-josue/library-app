@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 const formSchema = Yup.object().shape({
     title: Yup.string().min(2).max(100).required("This field is required"),
     description: Yup.string().min(4).required("This field is required"),
-    website_url: Yup.string().nullable().url("This field needs to be a valid url"),
+    url: Yup.string().nullable().url("This field needs to be a valid url"),
     image_url: Yup.string().nullable().url("This field needs to be a valid url"),
     year_published: Yup.number().positive("Must be a positive number").required("This field is required"),
     available: Yup.number().required("This field is required"),

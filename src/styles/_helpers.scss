@@ -54,5 +54,9 @@ $lg-desktop: 1370px;
 
 // ANIMATIONS
 .fadeIn{
-    animation: fade-in 300ms ease-in-out forwards;
+    animation: fade-in 400ms ease-in-out forwards;
+}
+
+.fadeOut{
+    animation: fade-out 400ms ease-in-out forwards;
 }

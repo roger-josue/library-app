@@ -51,6 +51,15 @@ body {
     }
   }
 
+  .container--full-vh{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+
   .spinner{
     font-size: 100px;
     margin-top: 6rem;

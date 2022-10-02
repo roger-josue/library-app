@@ -1,0 +1,109 @@
+@use '../helpers';
+
+.auth_form{
+    width: 90%;
+    min-height: 90vh;
+    margin-top: 1rem;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    border-radius: 10px;
+    background-color: helpers.setColor(bg-primary);
+    
+    @include helpers.media(helpers.$tablet) {
+        width: 60%;
+    }
+    @include helpers.media(helpers.$desktop) {
+        width: 40%;
+    }
+    @include helpers.media(helpers.$lg-desktop) {
+        width: 30%;
+    }
+    
+    &>*{
+        transition: all 400ms ease-in-out;
+        width: 80%;
+        padding: 0.50rem;
+        border-radius: 10px;
+        font-size: large;
+
+        @include helpers.media(helpers.$tablet) {
+            width: 60%;
+        }
+    }
+
+    &__title{
+        font-size:30px;
+        // margin-bottom: auto;
+        color: helpers.setColor(secondary);
+    }
+    
+    &__icon{
+        color: helpers.setColor(secondary);
+        margin-bottom: auto;
+        margin-top: auto;
+        font-size: 80px;
+
+    }
+
+    &__field{
+        border-radius: 0px;
+        border: none;
+        border-bottom: helpers.setColor(bg-secondary) solid 2px;
+        background-color: helpers.setColor(bg-primary);
+        color: helpers.setColor(text-primary);
+        margin-bottom: 0.50rem;
+        padding-left: 1rem;
+        transition: border-bottom 400ms ease-in-out;
+        outline: none;
+        
+        &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: helpers.setColor(bg-secondary);
+            opacity: 0.60; /* Firefox */
+          }
+    }
+
+    
+    &>span{
+        cursor: pointer;
+        border-radius: 0px;
+        outline: none;
+        border-bottom: transparent solid 2px;
+        transition: border-bottom 400ms ease-in-out;
+        width: max-content;
+    }
+    &__field:focus,
+    &__field:hover,
+    &>span:focus,
+    &>span:hover{
+        border-bottom: helpers.setColor(primary) solid 2px;
+    }
+
+    &__field--error{
+        padding: 0;
+        font-size: medium;
+        color: rgba(141, 10, 10, 0.801);
+    }
+
+   
+
+    button{
+        @include helpers.buttons;
+        font-size: larger;
+        color: helpers.setColor(bg-tertiary);
+        margin-top: 2rem;
+        text-align: center;
+
+        @include helpers.media(helpers.$tablet) {
+            width: 30%;
+        }
+    }
+
+    &__link{
+        color: helpers.setColor(bg-secondary);
+    }
+}
