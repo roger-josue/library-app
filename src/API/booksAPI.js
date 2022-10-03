@@ -1,10 +1,11 @@
 import axios from "axios";
 
-
 export const booksApi = axios.create({
-    baseURL: "http://127.0.0.1:8000/api/",
+    baseURL: "http://localhost:8000/api/",
     headers: {'Accept': 'application/json'}
 });
+
+booksApi.defaults.withCredentials = true;
 
 export const registerUser = async(user)=>{
     let response;
@@ -14,7 +15,7 @@ export const registerUser = async(user)=>{
         console.error(error);
     }
 
-    return response;
+    return response.data;
 }
 
 export const loginUser = async(user)=>{
@@ -25,22 +26,22 @@ export const loginUser = async(user)=>{
         console.error(error);
     }
 
-    return response;
+    return response.data;
 }
 
-export const logoutUser = async(token)=>{ //TODO: MIGHT CHANGE THIS LOGIC AND SET THE TOKEN UP IN THE AXIOS INSTANCE
+export const logoutUser = async(userToken)=>{ //TODO: MIGHT CHANGE THIS LOGIC AND SET THE TOKEN UP IN THE AXIOS INSTANCE
     let response;
     try {
         response = await booksApi.post("logout",{},{
             headers: {
-              'Authorization': `Bearer ${token}` 
+              'Authorization': `Bearer ${userToken}` 
             }
           });
     } catch (error) {
         console.error(error);
     }
 
-    return response;
+    return response.data;
 }
 
 
@@ -57,10 +58,14 @@ export const fetchBooks = async()=> {
     return books.data;
 }
 
-export const postBook = async(book)=>{
+export const postBook = async(book,userToken)=>{
     let response;
     try {
-        response = await booksApi.post("books",book);
+        response = await booksApi.post("books",book,{
+            headers: {
+              'Authorization': `Bearer ${userToken}` 
+            }
+          });
     } catch (error) {
         console.error(error);
     }
@@ -79,10 +84,14 @@ export const searchBooks = async(title)=>{
     return response;
 }
 
-export const editBook = async(id, book)=>{
+export const editBook = async(id, book,userToken)=>{
     let response;
     try {
-        response = await booksApi.put(`books/${id}`,book);
+        response = await booksApi.put(`books/${id}`,book,{
+            headers: {
+              'Authorization': `Bearer ${userToken}` 
+            }
+          });
     } catch (error) {
         console.error(error);
     }
@@ -90,10 +99,14 @@ export const editBook = async(id, book)=>{
     return response;
 }
 
-export const deleteBook = async(id)=>{
+export const deleteBook = async(id,userToken)=>{
     let response;
     try {
-        response = await booksApi.delete(`books/${id}`);
+        response = await booksApi.delete(`books/${id}`,{
+            headers: {
+              'Authorization': `Bearer ${userToken}` 
+            }
+          });
     } catch (error) {
         console.error(error);
     }

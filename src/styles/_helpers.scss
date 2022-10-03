@@ -1,7 +1,8 @@
 //==================== Global variables ====================
 
 //==================== Color variables ====================
-$gradient: linear-gradient(30deg, #00C6BA, #97ACCF, #A6ABB6, #FFFFFE, #464646, #2F4858 );
+$gradient: linear-gradient(135deg, hsla(176, 100%, 39%, 1) 0%, hsla(196, 45%, 62%, 1) 30%, hsla(187, 50%, 55%, 1) 70%, hsla(218, 37%, 70%, 1) 100%);
+
 
 $lightPalette : (
     'primary' : #00C6BA,
@@ -59,4 +60,10 @@ $lg-desktop: 1370px;
 
 .fadeOut{
     animation: fade-out 400ms ease-in-out forwards;
+}
+
+.fadeOut-inside-elements{
+    &>*{
+        animation: fade-out 400ms ease-in-out forwards;
+    }
 }

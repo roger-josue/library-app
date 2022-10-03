@@ -59,6 +59,10 @@ body {
     align-items: center;
   }
 
+  .container--gradient{
+    background: helpers.$gradient;
+  }
+
 
   .spinner{
     font-size: 100px;

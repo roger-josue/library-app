@@ -11,31 +11,21 @@
         10.4px 2.1px 21.3px rgba(0, 0, 0, 0.05),
         25px 5px 51px rgba(0, 0, 0, 0.07);
 
-    &>:first-child,
     &>:last-child{
         padding: 0.75rem 0;
     }
 
-    &__user_menu{
-        background-color: helpers.setColor(primary);
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        position: absolute;
-        top: 3px;
-        right: 1rem;
-        text-align: center;
-        line-height: 50px;
-        color: helpers.setColor(bg-primary);
-        cursor: pointer;
-        @include helpers.media(helpers.$tablet) {
-            right: 3rem;
-        }
+    &__header{
+        display: flex;
+        padding: 0.75rem 1rem;
+        align-items: center;
     }
-    &__logo{
-        margin-left: 1rem;
-        text-align: center;
 
+    &__logo{
+        
+        // margin-left: 1rem;
+        // text-align: center;
+        margin-right: auto;
         a{
             list-style: none;
             text-decoration: none;
@@ -44,6 +34,48 @@
         @include helpers.media(helpers.$tablet) {
             text-align: left;
             margin-left: 3rem;
+        }
+    }
+
+    &__user_menu{
+        background-color: helpers.setColor(primary);
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        line-height: 70px;
+        text-align: center;
+        color: helpers.setColor(bg-primary);
+        font-weight: bolder;
+        font-size: larger;
+        box-shadow: 0.5px 0.5px  rgba(0,0,0,0.6),-0.5px -0.5px  rgba(0,0,0,0.6);
+        z-index: 2;
+        cursor: pointer;
+        
+        &:hover + &__logout,
+        &:focus + &__logout,
+        &__logout:hover,
+        &__logout:focus{
+            width: 90px;
+            padding: 0.75rem 1.25rem;
+        }
+        
+        &__logout{
+            font-weight: bolder;
+            margin-left: -10px;
+            cursor: pointer;
+            background-color: helpers.setColor(primary);
+            color: helpers.setColor(bg-primary);
+            // position: absolute;
+            // top: 11px;
+            // left: 88%;
+            border-top-right-radius : 10px;
+            border-bottom-right-radius : 10px;
+            transition: all 400ms ease-in-out;
+            width: 0;
+
+            &:hover{
+                background-color: darken(helpers.setColor(primary),20%);
+            }
         }
     }
 }

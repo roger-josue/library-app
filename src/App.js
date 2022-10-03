@@ -8,14 +8,15 @@ import { AuthScreen } from './components/auth/AuthScreen';
 import { BookForm } from './components/BookForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooksAsync } from './features/books/booksSlice';
+import { loginFromLocalStorage } from './features/authorization/authSlice';
 
 
 function App() {
-  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
   const booksState = useSelector((state) => state.books.books);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(loginFromLocalStorage());
     dispatch(fetchBooksAsync());
   }, []);
   
@@ -25,12 +26,12 @@ function App() {
     [
       {
         path: "/",
-        element: <Dashboard isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>,
+        element: <Dashboard />,
         errorElement: <Navigate to="/books" replace={true} />,
         children: [
           {
             path: "auth",
-            element: <AuthScreen isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>,
+            element: <AuthScreen />,
           },
           {
             path: "/books",
