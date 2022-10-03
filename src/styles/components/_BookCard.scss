@@ -16,6 +16,28 @@
             transform: scale(1.04);
         }
     }
+
+    &__add-book{
+        width: 250px;
+        height: 300px;
+        cursor: pointer;
+        transition: transform 400ms ease-in-out;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:hover{
+            transform: scale(1.04);
+        }
+        text-align: center;
+        &>i{
+            font-size: 250px;
+            color: helpers.setColor(bg-secondary);
+            transition: color 400ms ease-in-out;
+            &:hover{
+                color: helpers.setColor(primary);
+            }
+        }
+    }
     
     &__description{
         padding: 0.50rem;
