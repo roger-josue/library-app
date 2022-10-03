@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { loginAsync, registerAsync } from '../../features/authorization/authSlice';
 import { RegisterFormik } from './RegisterFormik';
 import { LoginFormik } from './LoginFormik';
+import Swal from 'sweetalert2';
 
 
 export const AuthScreen = () => {
@@ -13,13 +14,41 @@ export const AuthScreen = () => {
 
   const [authType, setAuthType] = useState("login")
 
-  const handleLogin = (user) => {
-  
-    dispatch(loginAsync(user));
+  const handleLogin = async(user) => {
+    
+    try {
+      const result = await dispatch(loginAsync(user)).unwrap();
+
+    } catch (err) {
+      Swal.fire({
+        title: 'There has been an error!',
+        text: err.message,
+        icon: 'error',
+        showConfirmButton: false,
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+      });
+      
+    }
   }
   
-  const handleRegister = (user) => {
-    dispatch(registerAsync(user));
+  const handleRegister = async(user) => {
+    try {
+      const result = await dispatch(registerAsync(user)).unwrap();
+
+    } catch (err) {
+      Swal.fire({
+        title: 'There has been an error!',
+        text: err.message,
+        icon: 'error',
+        showConfirmButton: false,
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+      });
+      
+    }
   }
   
   const handleSubmit = (values, setSubmitting) => {

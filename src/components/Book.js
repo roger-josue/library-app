@@ -26,17 +26,33 @@ export const Book = () => {
     }
   }, []);
 
-  const handleDelete = ()=>{
-    dispatch( deleteBookAsync({id,token}) );
-    Swal.fire({
-      title: 'Book deleted successfully!',
-      icon: 'success',
-      showConfirmButton: false,
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-    });
-    navigate("/books");
+  const handleDelete = async()=>{
+    try {
+      const result = await dispatch( deleteBookAsync({id,token}) ).unwrap();
+      // handle result here
+      Swal.fire({
+        title: 'Book deleted successfully!',
+        icon: 'success',
+        showConfirmButton: false,
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+      });
+      navigate("/books");
+
+    } catch (err) {
+      Swal.fire({
+        title: 'There has been an error!',
+        text: err.message,
+        icon: 'error',
+        showConfirmButton: false,
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+      });
+      
+    }
+
   }
 
 

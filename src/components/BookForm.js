@@ -42,35 +42,66 @@ export const BookForm = ({ formType="Create"}) => {
   }, [formType]);
   
 
-  const handleSubmit = (values,setSubmitting, resetForm)=>{
+  const handleSubmit = async(values,setSubmitting, resetForm)=>{
     setSubmitting(true);
     if(formType === "Create"){
-      dispatch( createBookAsync({values,token}) );
-      Swal.fire({
-        title: 'Book created successfully!',
-        icon: 'success',
-        showConfirmButton: false,
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-      });
-      resetForm({values : initialValues});
+      try {
+        const result = await dispatch( createBookAsync({values,token}) ).unwrap();
+        // handle result here
+        Swal.fire({
+          title: 'Book created successfully!',
+          text: `${result.title} created`,
+          icon: 'success',
+          showConfirmButton: false,
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+        });
+        
+        resetForm({values : initialValues});
+
+      } catch (err) {
+        Swal.fire({
+          title: 'There has been an error!',
+          text: err.message,
+          icon: 'error',
+          showConfirmButton: false,
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+        });
+        
+      }
       setSubmitting(false);
     } else {
-      dispatch( editBookAsync({id,values,token}) );
-      Swal.fire({
-        title: 'Book updated successfully!',
-        icon: 'success',
-        showConfirmButton: false,
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-      });
-      setSubmitting(false);
+      try {
+        const result = await dispatch( editBookAsync({id,values,token}) ).unwrap();
+        // handle result here
+        Swal.fire({
+          title: 'Book updated successfully!',
+          icon: 'success',
+          text: `${result.title} updated`,
+          showConfirmButton: false,
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+        });
+        setSubmitting(false);
+
+      } catch (err) {
+        Swal.fire({
+          title: 'There has been an error!',
+          text: err.message,
+          icon: 'error',
+          showConfirmButton: false,
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+        });
+        
+      }
 
     }
-    // navigate(`/${user.id}/books`); //might change this for a form reset
-    
   }
 
   return (
