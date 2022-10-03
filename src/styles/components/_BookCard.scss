@@ -42,6 +42,8 @@
     &__description{
         padding: 0.50rem 2rem;
         &>a{
+            font-family: "Roboto Mono", monospace;
+            color: helpers.setColor(text-primary);
             cursor: pointer;
             text-decoration: none;
             transition: color 400ms ease-in;
