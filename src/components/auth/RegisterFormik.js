@@ -19,7 +19,7 @@ const formSchemaRegister = Yup.object().shape({
 
 export const RegisterFormik = ({ handleSubmit , setAuthType}) => {
   return (
-    <div className='container container--full-vh container--gradient'>
+    <div className='container container--full-vh container--gradient container--auth'>
     <Formik
       initialValues={initialValuesRegister}
       validationSchema={formSchemaRegister}
@@ -34,16 +34,16 @@ export const RegisterFormik = ({ handleSubmit , setAuthType}) => {
           {/* <i className="auth_form__icon fa-solid fa-right-to-bracket"></i> */}
 
           <Field className="auth_form__field" type="text" name="name" placeholder="Name" />
-          <ErrorMessage className='auth_form__field--error' name="name" component="div" />
+          <ErrorMessage className='auth_form__field--error fadeIn' name="name" component="div" />
 
           <Field id="emailRegister" className="auth_form__field" type="email" name="email" placeholder="Email" />
-          <ErrorMessage className='auth_form__field--error' name="email" component="div" />
+          <ErrorMessage className='auth_form__field--error fadeIn' name="email" component="div" />
 
           <Field id="passwordRegister" className="auth_form__field" type="password" name="password" placeholder="Password" />
-          <ErrorMessage className='auth_form__field--error' name="password" component="div" />
+          <ErrorMessage className='auth_form__field--error fadeIn' name="password" component="div" />
 
           <Field className="auth_form__field" type="password" name="password_confirmation" placeholder="Confirm password" />
-          <ErrorMessage className='auth_form__field--error' name="password_confirmation" component="div" />
+          <ErrorMessage className='auth_form__field--error fadeIn' name="password_confirmation" component="div" />
 
           <button type="submit" disabled={isSubmitting}>
             Register

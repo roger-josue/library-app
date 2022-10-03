@@ -25,23 +25,23 @@ export const FormikForm = ({initialValues, handleSubmit, formType}) => {
           <Form className='form fadeIn'>
             <label className='form__label' htmlFor="title">Title</label>
             <Field className="form__field" type="text" name="title" placeholder="Book title"/>
-            <ErrorMessage className='form__field--error' name="title" component="div" />
+            <ErrorMessage className='form__field--error fadeIn' name="title" component="div" />
 
             <label className='form__label' htmlFor="description">Description</label>
             <Field className="form__field" as="textarea" rows="3" name="description" placeholder="Description"/>
-            <ErrorMessage className='form__field--error' name="description" component="div" />
+            <ErrorMessage className='form__field--error fadeIn' name="description" component="div" />
 
             <label className='form__label' htmlFor="url">Website</label>
             <Field className="form__field" type="text" name="url" placeholder="Website url"/>
-            <ErrorMessage className='form__field--error' name="url" component="div" />
+            <ErrorMessage className='form__field--error fadeIn' name="url" component="div" />
             
             <label className='form__label' htmlFor="image_url">Image url</label>
             <Field className="form__field" type="text" name="image_url" placeholder="Image url"/>
-            <ErrorMessage className='form__field--error' name="image_url" component="div" />
+            <ErrorMessage className='form__field--error fadeIn' name="image_url" component="div" />
 
             <label className='form__label' htmlFor="year_published">Year published</label>
             <Field className="form__field" type="number" name="year_published" />
-            <ErrorMessage className='form__field--error' name="year_published" component="div" />
+            <ErrorMessage className='form__field--error fadeIn' name="year_published" component="div" />
 
             <label className='form__label' htmlFor="available">Available</label>
             <Field className="form__field" as="select" name="available">
@@ -49,7 +49,7 @@ export const FormikForm = ({initialValues, handleSubmit, formType}) => {
               <option value="1">Yes</option>
               <option value="0">No</option>
             </Field>
-            <ErrorMessage className='form__field--error' name="available" component="div" />
+            <ErrorMessage className='form__field--error fadeIn' name="available" component="div" />
           
             <button type="submit" disabled={isSubmitting}>
               {formType}

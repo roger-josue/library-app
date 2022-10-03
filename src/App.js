@@ -8,6 +8,7 @@ import { AuthScreen } from './components/auth/AuthScreen';
 import { BookForm } from './components/BookForm';
 import { useDispatch } from 'react-redux';
 import { loginFromLocalStorage } from './features/authorization/authSlice';
+import { SearchScreen } from './components/SearchScreen';
 
 
 function App() {
@@ -37,6 +38,10 @@ function App() {
           {
             path: ":user/books",
             element: <Books byUser={true}/>,
+          },
+          {
+            path: "search",
+            element: <SearchScreen />,
           },
           {
             path: "add",

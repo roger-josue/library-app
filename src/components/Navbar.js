@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate, useSearchParams } from 'react-router-dom'
 import { logoutAsync } from '../features/authorization/authSlice';
 
 export const Navbar = () => {
@@ -10,12 +10,26 @@ export const Navbar = () => {
   const { user, token } = useSelector(state => state.auth.user);
   const dispatch = useDispatch();
 
+  let [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+
+  const inputSearch = useRef(null);
+
   useEffect(() => {
     pickNickName();
   }, [])
 
 
 
+  const handleSearch = (e) => {
+    setSearchParams({search: e.target.value});
+  }
+  
+  const handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      setSearchParams({search: e.target.value});
+    }
+  }
 
   const handleLogout = () => {
 
@@ -71,8 +85,8 @@ export const Navbar = () => {
           </NavLink>
         </li>
         <li className='menu__items'>
-          <input type="text" className="menu__search" placeholder='Search' />
-          <button className="menu__search__btn">
+          <input ref={inputSearch} type="text" className="menu__search" placeholder='Search' onFocus={()=> {navigate("/search")}} onChange={handleSearch} onKeyDown={handleEnter}/>
+          <button className="menu__search__btn" onClick={()=> { setSearchParams({ search: inputSearch.current.value})}}>
             <i className="fa-solid fa-magnifying-glass"></i>
           </button>
         </li>
