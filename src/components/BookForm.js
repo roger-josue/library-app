@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { createBookAsync } from '../features/books/booksSlice';
 import { FormikForm } from './FormikForm';
 
 export const BookForm = ({ formType="Create"}) => {
@@ -14,7 +15,11 @@ export const BookForm = ({ formType="Create"}) => {
     available : ""
   };
   const { id } = useParams();
+  const navigate = useNavigate();
+  const {user,token} = useSelector(state => state.auth.user);
   const books = useSelector((state) => state.books.books);
+  const dispatch = useDispatch();
+
   const [book, setBook] = useState(initialValues);
 
   const removeKeys = () => {
@@ -39,11 +44,12 @@ export const BookForm = ({ formType="Create"}) => {
 
   const handleSubmit = (values,setSubmitting)=>{
     setSubmitting(true);
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 400);
+    if(formType === "Create"){
+      dispatch( createBookAsync({values,token}) );
+    }
     setSubmitting(false);
+    navigate(`/${user.id}/books`); //might change this for a form reset
+    
   }
 
   return (

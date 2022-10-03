@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchBooks } from '../../API/booksAPI';
+import { fetchBooks, postBook } from '../../API/booksAPI';
 
 const initialState = {
   books: [],
@@ -16,6 +16,15 @@ export const fetchBooksAsync = createAsyncThunk(
   'books/fetchBooks',
   async () => {
     const response = await fetchBooks();
+    // The value we return becomes the `fulfilled` action payload
+    return response;
+  }
+);
+
+export const createBookAsync = createAsyncThunk(
+  'books/createBook',
+  async (data) => {
+    const response = await postBook(data.values,data.token);
     // The value we return becomes the `fulfilled` action payload
     return response;
   }
@@ -38,6 +47,13 @@ export const booksSlice = createSlice({
       .addCase(fetchBooksAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.books = [ ...action.payload ];
+      })
+      .addCase(createBookAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(createBookAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.books.push(action.payload);
       });
   },
 });

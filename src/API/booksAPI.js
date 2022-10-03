@@ -29,7 +29,7 @@ export const loginUser = async(user)=>{
     return response.data;
 }
 
-export const logoutUser = async(userToken)=>{ //TODO: MIGHT CHANGE THIS LOGIC AND SET THE TOKEN UP IN THE AXIOS INSTANCE
+export const logoutUser = async(userToken)=>{
     let response;
     try {
         response = await booksApi.post("logout",{},{
@@ -78,7 +78,7 @@ export const postBook = async(book,userToken)=>{
         console.error(error);
     }
 
-    return response;
+    return response.data;
 }
 
 export const searchBooks = async(title)=>{
@@ -89,7 +89,7 @@ export const searchBooks = async(title)=>{
         console.error(error);
     }
 
-    return response;
+    return response.data;
 }
 
 export const editBook = async(id, book,userToken)=>{
@@ -104,7 +104,7 @@ export const editBook = async(id, book,userToken)=>{
         console.error(error);
     }
 
-    return response;
+    return response.data;
 }
 
 export const deleteBook = async(id,userToken)=>{
