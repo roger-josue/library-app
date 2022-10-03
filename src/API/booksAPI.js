@@ -51,6 +51,14 @@ export const fetchBooks = async()=> {
     let books;
     try {
         books = await booksApi.get("books");
+        books.data.map( book => {
+            if(book.url === null){
+                book.url = "";
+            }
+            if(book.image_url === null){
+                book.image_url = "";
+            }
+        })
       } catch (error) {
         console.error(error);
     }

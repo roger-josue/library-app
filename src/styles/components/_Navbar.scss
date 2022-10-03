@@ -17,7 +17,7 @@
 
     &__header{
         display: flex;
-        padding: 0.75rem 1rem;
+        padding: 0.75rem 3.5rem;
         align-items: center;
     }
 
@@ -33,7 +33,7 @@
         
         @include helpers.media(helpers.$tablet) {
             text-align: left;
-            margin-left: 3rem;
+            // margin-left: 3rem;
         }
     }
 
@@ -55,11 +55,15 @@
         &:focus + &__logout,
         &__logout:hover,
         &__logout:focus{
+            visibility: visible;
+            opacity: 1;
             width: 90px;
             padding: 0.75rem 1.25rem;
         }
         
         &__logout{
+            visibility: hidden;
+            opacity: 0;
             font-weight: bolder;
             margin-left: -10px;
             cursor: pointer;

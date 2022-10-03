@@ -39,7 +39,7 @@ function App() {
           },
           {
             path: ":user/books",
-            element: <Books books={booksState}/>,
+            element: <Books books={booksState} byUser={true}/>,
           },
           {
             path: "add",
