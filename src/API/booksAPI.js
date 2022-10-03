@@ -92,7 +92,7 @@ export const searchBooks = async(title)=>{
     return response.data;
 }
 
-export const editBook = async(id, book,userToken)=>{
+export const putBook = async(id, book,userToken)=>{
     let response;
     try {
         response = await booksApi.put(`books/${id}`,book,{

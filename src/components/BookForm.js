@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { createBookAsync } from '../features/books/booksSlice';
+import { createBookAsync, editBookAsync } from '../features/books/booksSlice';
 import { FormikForm } from './FormikForm';
+import Swal from 'sweetalert2';
 
 export const BookForm = ({ formType="Create"}) => {
 
@@ -15,7 +16,6 @@ export const BookForm = ({ formType="Create"}) => {
     available : ""
   };
   const { id } = useParams();
-  const navigate = useNavigate();
   const {user,token} = useSelector(state => state.auth.user);
   const books = useSelector((state) => state.books.books);
   const dispatch = useDispatch();
@@ -42,13 +42,34 @@ export const BookForm = ({ formType="Create"}) => {
   }, [formType]);
   
 
-  const handleSubmit = (values,setSubmitting)=>{
+  const handleSubmit = (values,setSubmitting, resetForm)=>{
     setSubmitting(true);
     if(formType === "Create"){
       dispatch( createBookAsync({values,token}) );
+      Swal.fire({
+        title: 'Book created successfully!',
+        icon: 'success',
+        showConfirmButton: false,
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+      });
+      resetForm({values : initialValues});
+      setSubmitting(false);
+    } else {
+      dispatch( editBookAsync({id,values,token}) );
+      Swal.fire({
+        title: 'Book updated successfully!',
+        icon: 'success',
+        showConfirmButton: false,
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+      });
+      setSubmitting(false);
+
     }
-    setSubmitting(false);
-    navigate(`/${user.id}/books`); //might change this for a form reset
+    // navigate(`/${user.id}/books`); //might change this for a form reset
     
   }
 

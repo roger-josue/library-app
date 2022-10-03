@@ -19,7 +19,7 @@ export const FormikForm = ({initialValues, handleSubmit, formType}) => {
         initialValues={initialValues}
         validationSchema={formSchema}
         enableReinitialize
-        onSubmit={(values, { setSubmitting })=>handleSubmit(values,setSubmitting)}
+        onSubmit={(values, { setSubmitting, resetForm })=>handleSubmit(values,setSubmitting, resetForm )}
       >
         {({ isSubmitting }) => (
           <Form className='form fadeIn'>
