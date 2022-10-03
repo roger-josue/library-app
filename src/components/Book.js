@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import placeholder from '../assets/book-placeholder.jpeg';
+import { deleteBookAsync } from '../features/books/booksSlice';
+import Swal from 'sweetalert2';
 
 export const Book = () => {
   const { id } = useParams();
-  const user = useSelector((state) => state.auth.user.user);
+  const navigate = useNavigate();
+  const { user,token } = useSelector((state) => state.auth.user);
   const books = useSelector((state) => state.books.books);
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
   const [book, setBook] = useState({});
 
@@ -21,6 +25,19 @@ export const Book = () => {
       }, 400);
     }
   }, []);
+
+  const handleDelete = ()=>{
+    dispatch( deleteBookAsync({id,token}) );
+    Swal.fire({
+      title: 'Book deleted successfully!',
+      icon: 'success',
+      showConfirmButton: false,
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+    });
+    navigate("/books");
+  }
 
 
   return (
@@ -42,7 +59,7 @@ export const Book = () => {
                   <a target="_blank" href={book.url} >
                     Website <i className="fa-solid fa-up-right-from-square"></i></a>
                   <Link to={`/edit/${id}`} className={(user.id == book.user_id) ? "" : "book__body__buttons__a--disabled"}>Edit <i className="fa-solid fa-pen-to-square"></i></Link>
-                  <button className={(user.id == book.user_id) ? "" : "book__body__buttons__a--disabled"}>Delete <i className="fa-solid fa-trash"></i></button>
+                  <button className={(user.id == book.user_id) ? "" : "book__body__buttons__a--disabled"} onClick={handleDelete}>Delete <i className="fa-solid fa-trash"></i></button>
                 </div>
               </figcaption>
             </figure>

@@ -119,5 +119,5 @@ export const deleteBook = async(id,userToken)=>{
         console.error(error);
     }
 
-    return response;
+    return response.data;
 }

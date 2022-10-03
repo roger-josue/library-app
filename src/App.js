@@ -6,18 +6,15 @@ import { Books } from './components/Books';
 import { Book } from './components/Book';
 import { AuthScreen } from './components/auth/AuthScreen';
 import { BookForm } from './components/BookForm';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchBooksAsync } from './features/books/booksSlice';
+import { useDispatch } from 'react-redux';
 import { loginFromLocalStorage } from './features/authorization/authSlice';
 
 
 function App() {
-  const booksState = useSelector((state) => state.books.books);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loginFromLocalStorage());
-    dispatch(fetchBooksAsync());
   }, []);
   
   
@@ -35,11 +32,11 @@ function App() {
           },
           {
             path: "/books",
-            element: <Books books={booksState}/>,
+            element: <Books />,
           },
           {
             path: ":user/books",
-            element: <Books books={booksState} byUser={true}/>,
+            element: <Books byUser={true}/>,
           },
           {
             path: "add",
@@ -56,16 +53,6 @@ function App() {
         ],
       },
     ]
-
-    // createRoutesFromElements(
-    //   <Route path="/" element={<Dashboard isLoggedIn={isLoggedIn}/>}>
-    //     <Route path="/auth/login" element={<LoginScreen />} />
-    //     <Route path="/auth/register" element={<RegisterScreen />} />
-    //     <Route path="/" element={<Books />} />
-    //     <Route path="/add" element={<BookForm />} />
-    //     <Route path="book/:id" element={<Book />} />
-    //   </Route>
-    // )
   );
 
   return (
