@@ -19,7 +19,7 @@ export const Books = ({ books, byUser=false }) => {
     <section className='container container--grid fadeIn'>
         {
 
-          (byUser) ? booksByUser.map( (book) => <BookCard key={book.id} book={book}/>)
+          (byUser) ? booksByUser.map( (book) => <BookCard key={book.id} book={book} />)
                  : books.map( (book) => <BookCard key={book.id} book={book}/>)
         }
       <AddBookCard />

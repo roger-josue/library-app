@@ -42,6 +42,7 @@ export const Book = () => {
                   <a target="_blank" href={book.url} >
                     Website <i className="fa-solid fa-up-right-from-square"></i></a>
                   <Link to={`/edit/${id}`} className={(user.id == book.user_id) ? "" : "book__body__buttons__a--disabled"}>Edit <i className="fa-solid fa-pen-to-square"></i></Link>
+                  <button className={(user.id == book.user_id) ? "" : "book__body__buttons__a--disabled"}>Delete <i className="fa-solid fa-trash"></i></button>
                 </div>
               </figcaption>
             </figure>

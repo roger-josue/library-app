@@ -37,7 +37,8 @@
             &>*{
                 padding-top: 1rem;
             }
-            a{
+            a,
+            button{
                 @include helpers.buttons;
                 border-radius: 10px;
                 margin: 0 1rem;
@@ -49,6 +50,14 @@
                     color: helpers.setColor(bg-tertiary);
                 }
 
+            }
+            button{
+                font-size: medium;
+                font-family: "Roboto", sans-serif;
+                background-color: rgba(141, 10, 10, 0.801);
+                &:hover{
+                    background-color: lighten(rgba(141, 10, 10, 0.801),15);
+                }
             }
         }
 
