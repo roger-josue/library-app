@@ -7,7 +7,7 @@ export const Navbar = () => {
 
   const [nickname, setNickname] = useState("");
 
-  const user = useSelector(state => state.auth.user.user);
+  const {user, token} = useSelector(state => state.auth.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,7 +18,8 @@ export const Navbar = () => {
 
 
   const handleLogout = () => {
-    dispatch(logoutAsync(user.token));
+
+    dispatch(logoutAsync(token));
   }
 
   const pickNickName = () => {
