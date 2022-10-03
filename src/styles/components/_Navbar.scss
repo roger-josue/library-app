@@ -1,6 +1,10 @@
 @use '../helpers';
 
 .navbar{
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    right: 0;
     background-color: helpers.setColor(bg-primary);
     border: none;
     box-shadow:
@@ -106,6 +110,10 @@
             &:hover{
                 color: helpers.setColor(primary);
             }
+        }
+
+        &__active{
+            color: helpers.setColor(primary);
         }
     }
     &>:last-child{

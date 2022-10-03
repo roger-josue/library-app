@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { logoutAsync } from '../features/authorization/authSlice';
 
 export const Navbar = () => {
 
   const [nickname, setNickname] = useState("");
 
-  const {user, token} = useSelector(state => state.auth.user);
+  const { user, token } = useSelector(state => state.auth.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -49,9 +49,27 @@ export const Navbar = () => {
       </div>
       <hr color="#A6ABB6" />
       <ul className="menu">
-        <li className='menu__items'><Link to='/books'>All books</Link></li>
-        <li className='menu__items'><Link to={`${user.id}/books`}>Your Books</Link></li>
-        <li className='menu__items'><Link to='/add'>Add Book</Link></li>
+        <li className='menu__items'>
+          <NavLink to='/books' className={({ isActive }) =>
+            isActive ? "menu__items__active" : ""
+          }>
+            All books
+          </NavLink>
+        </li>
+        <li className='menu__items'>
+          <NavLink to={`${user.id}/books`} className={({ isActive }) =>
+            isActive ? "menu__items__active" : ""
+          }>
+            Your Books
+            </NavLink>
+          </li>
+        <li className='menu__items'>
+          <NavLink to='/add' className={({ isActive }) =>
+            isActive ? "menu__items__active" : ""
+          }>
+            Add Book
+          </NavLink>
+        </li>
         <li className='menu__items'>
           <input type="text" className="menu__search" placeholder='Search' />
           <button className="menu__search__btn">
