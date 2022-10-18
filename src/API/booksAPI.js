@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const booksApi = axios.create({
-    baseURL: "http://localhost:8000/api/",
+    baseURL: "http://localhost:8000/",
     headers: {'Accept': 'application/json'}
 });
 
@@ -10,7 +10,8 @@ booksApi.defaults.withCredentials = true;
 export const registerUser = async(user)=>{
     let response;
     try {
-        response = await booksApi.post("register",user);
+        await booksApi.get("sanctum/csrf-cookie");
+        response = await booksApi.post("api/register",user);
     } catch (error) {
         console.error(error);
     }
@@ -21,7 +22,8 @@ export const registerUser = async(user)=>{
 export const loginUser = async(user)=>{
     let response;
     try {
-        response = await booksApi.post("login",user);
+        await booksApi.get("sanctum/csrf-cookie");
+        response = await booksApi.post("api/login",user);
     } catch (error) {
         console.error(error);
     }
@@ -32,7 +34,7 @@ export const loginUser = async(user)=>{
 export const logoutUser = async(userToken)=>{
     let response;
     try {
-        response = await booksApi.post("logout",{},{
+        response = await booksApi.post("api/logout",{},{
             headers: {
               'Authorization': `Bearer ${userToken}` 
             }
@@ -50,7 +52,7 @@ export const logoutUser = async(userToken)=>{
 export const fetchBooks = async()=> {
     let books;
     try {
-        books = await booksApi.get("books");
+        books = await booksApi.get("api/books");
         books.data.map( book => {
             if(book.url === null){
                 book.url = "";
@@ -69,7 +71,7 @@ export const fetchBooks = async()=> {
 export const postBook = async(book,userToken)=>{
     let response;
     try {
-        response = await booksApi.post("books",book,{
+        response = await booksApi.post("api/books",book,{
             headers: {
               'Authorization': `Bearer ${userToken}` 
             }
@@ -84,7 +86,7 @@ export const postBook = async(book,userToken)=>{
 export const searchBooks = async(title)=>{
     let response;
     try {
-        response = await booksApi.get(`books/search/${title}`);
+        response = await booksApi.get(`api/books/search/${title}`);
     } catch (error) {
         console.error(error);
     }
@@ -95,7 +97,7 @@ export const searchBooks = async(title)=>{
 export const putBook = async(id, book,userToken)=>{
     let response;
     try {
-        response = await booksApi.put(`books/${id}`,book,{
+        response = await booksApi.put(`api/books/${id}`,book,{
             headers: {
               'Authorization': `Bearer ${userToken}` 
             }
@@ -110,7 +112,7 @@ export const putBook = async(id, book,userToken)=>{
 export const deleteBook = async(id,userToken)=>{
     let response;
     try {
-        response = await booksApi.delete(`books/${id}`,{
+        response = await booksApi.delete(`api/books/${id}`,{
             headers: {
               'Authorization': `Bearer ${userToken}` 
             }
