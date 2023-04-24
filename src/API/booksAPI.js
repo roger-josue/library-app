@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const booksApi = axios.create({
-    baseURL: "http://localhost:8000/",
+    baseURL: "https://books-api-prod.up.railway.app/",
     headers: {'Accept': 'application/json'}
 });
 
