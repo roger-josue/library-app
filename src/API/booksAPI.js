@@ -11,7 +11,7 @@ export const booksApi = axios.create({
 export const registerUser = async(user)=>{
     let response;
     try {
-        await booksApi.get("sanctum/csrf-cookie");
+        // await booksApi.get("sanctum/csrf-cookie");
         response = await booksApi.post("api/register",user);
     } catch (error) {
         console.error(error);
@@ -23,7 +23,7 @@ export const registerUser = async(user)=>{
 export const loginUser = async(user)=>{
     let response;
     try {
-        await booksApi.get("sanctum/csrf-cookie");
+        // await booksApi.get("sanctum/csrf-cookie");
         response = await booksApi.post("api/login",user);
     } catch (error) {
         console.error(error);
