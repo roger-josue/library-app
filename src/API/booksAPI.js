@@ -1,11 +1,12 @@
 import axios from "axios";
 
 export const booksApi = axios.create({
-    baseURL: "https://books-api-prod.up.railway.app/",
+    baseURL: "https://books-api.roger-vargas.dev/",
+    withCredentials: true,
     headers: {'Accept': 'application/json'}
 });
 
-booksApi.defaults.withCredentials = true;
+// booksApi.defaults.withCredentials = true;
 
 export const registerUser = async(user)=>{
     let response;
